@@ -3,94 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Student Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJp6X2m5u7cFZ2bF7v7dKof9x3kz3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="app.js" defer></script>
 </head>
-<style>
-  body {
-    background-color: #f8f9fa;
-  }
-  .container {
-    margin-top: 50px;
-  }
-  .card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-</style>
 <body>
-    
-  <div class="container">
-    <h1 class="text-center mb-4">Student Management System</h1>
-
-    <div class="card mb-4">
-      <div class="card-header text-white bg-primary">
-        Add Student
-      </div>
-      <div class="card-body">
-        <form id="addStudentForm">
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" required>
-            </div>
-            <div class="col-md-6">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" required>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="studentId" class="form-label">Student ID</label>
-            <input type="text" class="form-control" id="studentId" placeholder="Enter Student ID" required>
-          </div>
-          <div class="mb-3">
-            <label for="semester" class="form-label">Semester</label>
-            <input type="text" class="form-control" id="semester" placeholder="Enter Semester" required>
-          </div>
-          <div class="mb-3">
-            <label for="courses" class="form-label">Courses (comma-separated)</label>
-            <input type="text" class="form-control" id="courses" placeholder="Enter Courses">
-          </div>
-          <button type="submit" class="btn btn-primary">Add Student</button>
-        </form>
-      </div>
+    <div class="container mt-5">
+        <h2>Student Management</h2>
+        
+        <!-- Form for adding/updating student -->
+        <div class="mb-3">
+            <input type="text" id="firstName" class="form-control" placeholder="First Name">
+            <input type="text" id="lastName" class="form-control" placeholder="Last Name">
+            <input type="text" id="studentId" class="form-control" placeholder="Student ID">
+            <input type="text" id="semester" class="form-control" placeholder="Semester">
+            <input type="text" id="courseName" class="form-control" placeholder="Course Name">
+            <input type="text" id="courseCode" class="form-control" placeholder="Course Code">
+        </div>
+        
+        <button class="btn btn-primary" id="addStudentBtn">Add Student</button>
+        <button class="btn btn-danger" id="removeStudentBtn">Remove Student</button>
+        <button class="btn btn-success" id="modifyStudentBtn">Modify Student</button>
     </div>
-
-    <div class="card mb-4">
-      <div class="card-header text-white bg-secondary">
-        Student List
-      </div>
-      <div class="card-body">
-        <ul class="list-group" id="studentList">
-          <!-- Dynamic content will be injected here -->
-        </ul>
-      </div>
-    </div>
-
-    <div class="card mb-4">
-      <div class="card-header text-white bg-success">
-        Update or Remove Student
-      </div>
-      <div class="card-body">
-        <form id="updateStudentForm">
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="updateStudentId" class="form-label">Student ID</label>
-              <input type="text" class="form-control" id="updateStudentId" placeholder="Enter Student ID" required>
-            </div>
-            <div class="col-md-6">
-              <label for="updateSemester" class="form-label">New Semester</label>
-              <input type="text" class="form-control" id="updateSemester" placeholder="Enter New Semester">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-success">Update Student</button>
-          <button type="button" class="btn btn-danger" id="removeStudent">Remove Student</button>
-        </form>
-      </div>
-    </div>
-  </div>
-    <script src="script.js"></script>
 </body>
 </html>

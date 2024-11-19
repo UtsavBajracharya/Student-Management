@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const CourseSchema = new mongoose.Schema({
-  name: String,
-  code: { type: String, unique: true },
+const courseSchema = new mongoose.Schema({
+    courseName: String,
+    courseCode: { type: String, unique: true }
 });
 
-module.exports = mongoose.model("Course", CourseSchema);
+module.exports = mongoose.model('Course', courseSchema);
