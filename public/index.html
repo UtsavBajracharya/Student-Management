@@ -6,6 +6,15 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <h1>Student Management</h1>
+  <form onsubmit="addStudent(); return false;">
+    <input id="firstName" placeholder="First Name" required />
+    <input id="lastName" placeholder="Last Name" required />
+    <input id="id" placeholder="ID" required />
+    <input id="semester" placeholder="Semester" required type="number" />
+    <input id="courses" placeholder="Courses (comma-separated)" required />
+    <button type="submit">Add Student</button>
+  </form>
+    <script src="script.js"></script>
 </body>
 </html>
