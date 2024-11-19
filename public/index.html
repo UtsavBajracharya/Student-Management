@@ -5,16 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+</style>
 <body>
-    <h1>Student Management</h1>
-  <form onsubmit="addStudent(); return false;">
-    <input id="firstName" placeholder="First Name" required />
-    <input id="lastName" placeholder="Last Name" required />
-    <input id="id" placeholder="ID" required />
-    <input id="semester" placeholder="Semester" required type="number" />
-    <input id="courses" placeholder="Courses (comma-separated)" required />
-    <button type="submit">Add Student</button>
-  </form>
+    
+  <div class="container">
+    <h1 class="text-center mb-4">Student Management System</h1>
+
+    <div class="card mb-4">
+      <div class="card-header text-white bg-primary">
+        Add Student
+      </div>
+      <div class="card-body">
+        <form id="addStudentForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="studentId" class="form-label">Student ID</label>
+            <input type="text" class="form-control" id="studentId" placeholder="Enter Student ID" required>
+          </div>
+          <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <input type="text" class="form-control" id="semester" placeholder="Enter Semester" required>
+          </div>
+          <div class="mb-3">
+            <label for="courses" class="form-label">Courses (comma-separated)</label>
+            <input type="text" class="form-control" id="courses" placeholder="Enter Courses">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header text-white bg-secondary">
+        Student List
+      </div>
+      <div class="card-body">
+        <ul class="list-group" id="studentList">
+          <!-- Dynamic content will be injected here -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-header text-white bg-success">
+        Update or Remove Student
+      </div>
+      <div class="card-body">
+        <form id="updateStudentForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="updateStudentId" class="form-label">Student ID</label>
+              <input type="text" class="form-control" id="updateStudentId" placeholder="Enter Student ID" required>
+            </div>
+            <div class="col-md-6">
+              <label for="updateSemester" class="form-label">New Semester</label>
+              <input type="text" class="form-control" id="updateSemester" placeholder="Enter New Semester">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Update Student</button>
+          <button type="button" class="btn btn-danger" id="removeStudent">Remove Student</button>
+        </form>
+      </div>
+    </div>
+  </div>
     <script src="script.js"></script>
 </body>
 </html>
