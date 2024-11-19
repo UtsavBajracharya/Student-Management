@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/students';
+const API_URL = '/api/students';
 
 $(document).ready(function() {
     $('#addStudentBtn').click(function() {
@@ -13,13 +13,21 @@ $(document).ready(function() {
             }]
         };
 
-        $.post(`${API_URL}/add`, studentData, function(response) {
-            alert('Student added successfully');
-        }).fail(function(err) {
-            alert('Error: ' + err.responseJSON.error);
-        });
-    });
+        $.ajax({
+          url: `${API_URL}/add`,
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(studentData),
+          success: function(response) {
+              alert('Student added successfully');
+          },
+          error: function(err) {
+              alert('Error: ' + err.responseJSON.error);
+          }
+      });
+  });
 
+    //remove a student
     $('#removeStudentBtn').click(function() {
         const studentId = $('#studentId').val();
         $.ajax({
@@ -34,6 +42,8 @@ $(document).ready(function() {
         });
     });
 
+
+    // modify a student
     $('#modifyStudentBtn').click(function() {
         const studentId = $('#studentId').val();
         const studentData = {

@@ -8,7 +8,10 @@ exports.addStudent = async (req, res) => {
         await student.save();
         res.status(201).json(student);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      if (error.code === 11000) {
+        return res.status(400).json({ error: "Duplicate entry detected" });
+      }
+      res.status(400).json({ error: error.message });
     }
 };
 

@@ -8,7 +8,7 @@ const courseSchema = new mongoose.Schema({
 const studentSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
-    studentId: { type: String, unique: true },
+    studentId: { type: String, unique: true, required: true },
     semester: String,
     courses: [courseSchema]
 });

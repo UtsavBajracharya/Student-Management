@@ -6,12 +6,12 @@ const router = express.Router();
 
 // Middleware for validating course payload
 const validateCourse = [
-  body("name")
+  body("courseName")
     .notEmpty()
     .withMessage("Course name is required")
     .isString()
     .withMessage("Course name must be a string"),
-  body("code")
+  body("courseCode")
     .notEmpty()
     .withMessage("Course code is required")
     .isString()
