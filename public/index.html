@@ -4,27 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJp6X2m5u7cFZ2bF7v7dKof9x3kz3" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  body {
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.btn {
+    margin: 0 5px;
+}
+
+</style>
 <body>
     <div class="container mt-5">
-        <h2>Student Management</h2>
-        
-        <!-- Form for adding/updating student -->
-        <div class="mb-3">
-            <input type="text" id="firstName" class="form-control" placeholder="First Name">
-            <input type="text" id="lastName" class="form-control" placeholder="Last Name">
-            <input type="text" id="studentId" class="form-control" placeholder="Student ID">
-            <input type="text" id="semester" class="form-control" placeholder="Semester">
-            <input type="text" id="courseName" class="form-control" placeholder="Course Name">
-            <input type="text" id="courseCode" class="form-control" placeholder="Course Code">
+        <h1 class="text-center text-primary mb-4">Student Management System</h1>
+
+        <!-- Add Student Form -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4>Add Student</h4>
+            </div>
+            <div class="card-body">
+                <form id="studentForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="studentId" class="form-label">Student ID</label>
+                            <input type="text" id="studentId" class="form-control" placeholder="Enter student ID" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="semester" class="form-label">Semester</label>
+                            <input type="text" id="semester" class="form-control" placeholder="Enter semester" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="courseName" class="form-label">Course Name</label>
+                            <input type="text" id="courseName" class="form-control" placeholder="Enter course name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="courseCode" class="form-label">Course Code</label>
+                            <input type="text" id="courseCode" class="form-control" placeholder="Enter course code" required>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" id="addStudentBtn" class="btn btn-primary">Add Student</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-        <button class="btn btn-primary" id="addStudentBtn">Add Student</button>
-        <button class="btn btn-danger" id="removeStudentBtn">Remove Student</button>
-        <button class="btn btn-success" id="modifyStudentBtn">Modify Student</button>
+
+        <!-- Student Data Table -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4>Student List</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Student ID</th>
+                            <th>Semester</th>
+                            <th>Courses</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
