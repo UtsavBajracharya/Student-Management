@@ -22,3 +22,6 @@ app.use("/api/courses", require("./routes/courses"));
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+// Serve static files
+app.use(express.static(path.join(__dirname, "public")));
