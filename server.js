@@ -26,7 +26,7 @@ app.use("/api/students", require("./routes/students"));
 app.use("/api/courses", require("./routes/courses"));
 
 // MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/studentDB", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, })
+mongoose.connect("mongodb://127.0.0.1:27017/studentDB", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
   })
