@@ -1,5 +1,4 @@
 const Student = require('../models/student');
-const Course = require('../models/course');
 
 // Add a new student
 exports.addStudent = async (req, res) => {
@@ -8,10 +7,11 @@ exports.addStudent = async (req, res) => {
         await student.save();
         res.status(201).json(student);
     } catch (error) {
-      if (error.code === 11000) {
-        return res.status(400).json({ error: "Duplicate entry detected" });
-      }
-      res.status(400).json({ error: error.message });
+        if (error.code === 11000) {
+            const duplicateField = Object.keys(error.keyValue)[0];
+            return res.status(400).json({ error: `${duplicateField} must be unique` });
+        }
+        res.status(400).json({ error: error.message });
     }
 };
 
@@ -41,15 +41,24 @@ exports.modifyStudent = async (req, res) => {
     }
 };
 
-// Modify course information
+// Modify a course within a student
 exports.modifyCourse = async (req, res) => {
-    try {
-        const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
-        if (!course) {
-            return res.status(404).json({ message: 'Course not found' });
-        }
-        res.status(200).json(course);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+  try {
+      const { studentId, courseId } = req.params;
+      const updatedCourse = req.body;
+
+      const student = await Student.findOneAndUpdate(
+          { _id: studentId, courses: courseId },
+          { $set: { "courses.$": updatedCourse } },
+          { new: true }
+      ).populate('courses');
+
+      if (!student) {
+          return res.status(404).json({ message: 'Student or Course not found' });
+      }
+
+      res.status(200).json(student);
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
 };

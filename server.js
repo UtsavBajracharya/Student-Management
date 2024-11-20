@@ -7,10 +7,37 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Middleware
+const studentRoutes = require('./routes/students');
+const courseRoutes = require('./routes/courses');
+
+// Middleware 
 app.use(cors());
 app.use(bodyParser.json());
 
+
+app.get('/api/students', async (req, res) => {
+  try {
+    const students = await Student.find(); // Adjust the query as needed
+    res.json(students);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch students' });
+  }
+});
+
+app.use('/api/courses', courseRoutes);
+
+
+// Define the student schema
+const studentSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  studentId: String,
+  semester: String,
+  courses: [{
+    courseName: String,
+    courseCode: String,
+  }],
+});
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
